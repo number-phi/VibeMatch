@@ -47,7 +47,7 @@ export default function RoomPage() {
     <main className="mx-auto flex h-full max-w-2xl flex-col px-4 py-4">
       <header className="mb-4 flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <Link to="/" className="text-xs text-white/40 hover:text-white/70">← ConsensusSwipe</Link>
+          <Link to="/" className="text-xs text-white/40 hover:text-white/70">← VibeMatch</Link>
           <h1 className="truncate text-lg font-bold">{state.room.title}</h1>
         </div>
         <button onClick={copy} className="shrink-0 rounded-full border border-white/15 px-3 py-1.5 text-xs hover:bg-white/10">
