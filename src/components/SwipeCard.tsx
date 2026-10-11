@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { animate, motion, useMotionValue, useTransform, type PanInfo } from "framer-motion";
 import type { Card } from "../types";
+import { swipeDirectionForKey } from "../lib/swipeKeys";
 
 const THRESHOLD = 110;
 
@@ -24,6 +25,19 @@ export default function SwipeCard({ card, forced, onVote }: Props) {
 
   useEffect(() => {
     if (forced) fling(forced);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forced]);
+
+  useEffect(() => {
+    if (forced) return;
+    const onKey = (e: KeyboardEvent) => {
+      const dir = swipeDirectionForKey(e);
+      if (!dir || x.isAnimating()) return;
+      e.preventDefault();
+      fling(dir);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forced]);
 
