@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import type { Card } from "../types";
 import SwipeCard from "./SwipeCard";
 
@@ -39,11 +39,11 @@ export default function SwipeDeck({ cards, startIndex, onVote }: Props) {
 
       <div className="flex justify-center gap-8 pb-2">
         <button onClick={() => setForced("left")} disabled={!!forced} aria-label="No"
-          className="grid h-16 w-16 place-items-center rounded-full border border-red-500/40 bg-red-500/10 text-2xl transition hover:scale-110 hover:bg-red-500/20">
+          className={`grid h-16 w-16 place-items-center rounded-full border border-red-500/40 bg-red-500/10 text-2xl transition hover:scale-110 hover:bg-red-500/20 ${forced === "left" ? "choice-pop" : ""}`} style={{ "--glow": "rgba(239,68,68,0.6)" } as CSSProperties}>
           ❌
         </button>
         <button onClick={() => setForced("right")} disabled={!!forced} aria-label="Yes"
-          className="grid h-16 w-16 place-items-center rounded-full border border-emerald-400/40 bg-emerald-400/10 text-2xl transition hover:scale-110 hover:bg-emerald-400/20">
+          className={`grid h-16 w-16 place-items-center rounded-full border border-emerald-400/40 bg-emerald-400/10 text-2xl transition hover:scale-110 hover:bg-emerald-400/20 ${forced === "right" ? "choice-pop" : ""}`} style={{ "--glow": "rgba(52,211,153,0.6)" } as CSSProperties}>
           ❤️
         </button>
       </div>
